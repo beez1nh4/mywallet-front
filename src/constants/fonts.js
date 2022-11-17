@@ -1,5 +1,5 @@
-
-
+export const baseFont = 'Raleway'
+export const logoFont = 'Saira Stencil One'
 
 
 

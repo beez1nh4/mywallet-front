@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import GlobalStyle from "./assets/styles/GlobalStyle";
-import SignUpPage from "./pages/LoginPage/SignUpPage";
-import LoginPage from "./pages/SignUpPage/LoginPage";
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 
 function App() {
