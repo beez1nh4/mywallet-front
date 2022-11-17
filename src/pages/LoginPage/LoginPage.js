@@ -4,8 +4,15 @@ import { LinkToClick } from "../../components/LinkToClick";
 import Logo from "../../components/Logo";
 import { SubmitButton } from "../../components/SubmitButton";
 import { backgroundColor } from "../../constants/colors";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+    const navigate = useNavigate()
+
+    function navigateSignUp(){
+        navigate("/sign-up")
+    }
+
     return(
         <>
         <LoginPageContainer>
@@ -17,7 +24,7 @@ export default function LoginPage() {
         placeholder="Senha"
         />
         <SubmitButton>Entrar</SubmitButton>
-        <LinkToClick>
+        <LinkToClick onClick={navigateSignUp}>
             <p>Primeira vez? Cadastre-se!</p>
         </LinkToClick>
         </LoginPageContainer>

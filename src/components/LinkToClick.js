@@ -3,7 +3,7 @@ import { whiteColor } from "../constants/colors";
 import { baseFont } from "../constants/fonts";
 
 export const LinkToClick = styled.div`
-    width: 191px;
+    width: 227px;
     height: 18px;
     margin-bottom: 600px;
     & p {
