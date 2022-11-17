@@ -1,10 +1,9 @@
-import styled from "styled-components";
-import Logo from "../../components/Logo";
-import { backgroundColor } from "../../constants/colors";
 import { Input } from "../../components/Input";
 import { SubmitButton } from "../../components/SubmitButton";
 import { LinkToClick } from "../../components/LinkToClick";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../components/Logo";
+import { Background } from "../../components/Background";
 
 export default function SignUpPage() {
     const navigate = useNavigate()
@@ -15,7 +14,7 @@ export default function SignUpPage() {
 
     return(
         <>
-        <SignUpPageContainer>
+        <Background>
         <Logo/>
         <Input
         placeholder="Nome"
@@ -27,21 +26,13 @@ export default function SignUpPage() {
         placeholder="Senha"
         />
         <Input
-        placeholder="Confirme a sennha"
+        placeholder="Confirme a senha"
         />
         <SubmitButton>Cadastrar</SubmitButton>
         <LinkToClick onClick={navigateLogin}>
             <p>Já tem uma conta? Entre agora!</p>
         </LinkToClick>
-        </SignUpPageContainer>
+        </Background>
         </>
     )
 }
-
-const SignUpPageContainer = styled.div`
-    background-color: ${backgroundColor};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`

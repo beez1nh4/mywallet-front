@@ -1,10 +1,10 @@
-import styled from "styled-components";
 import { Input } from "../../components/Input";
 import { LinkToClick } from "../../components/LinkToClick";
-import Logo from "../../components/Logo";
 import { SubmitButton } from "../../components/SubmitButton";
-import { backgroundColor } from "../../constants/colors";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../components/Logo";
+import { Background } from "../../components/Background";
+
 
 export default function LoginPage() {
     const navigate = useNavigate()
@@ -15,7 +15,7 @@ export default function LoginPage() {
 
     return(
         <>
-        <LoginPageContainer>
+        <Background>
         <Logo/>
         <Input
         placeholder="E-mail"
@@ -27,15 +27,8 @@ export default function LoginPage() {
         <LinkToClick onClick={navigateSignUp}>
             <p>Primeira vez? Cadastre-se!</p>
         </LinkToClick>
-        </LoginPageContainer>
+        </Background>
         </>
     )
 }
 
-const LoginPageContainer = styled.div`
-    background-color: ${backgroundColor};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`
