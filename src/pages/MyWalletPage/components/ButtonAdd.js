@@ -1,13 +1,39 @@
 import styled from "styled-components"
 import { buttonColor, whiteColor } from "../../../constants/colors"
 import { baseFont } from "../../../constants/fonts"
+import { AddCircleOutline, RemoveCircleOutline} from 'react-ionicons'
+import { useNavigate } from "react-router-dom"
 
-export default function ButtonAdd() {
+export default function ButtonAdd({income}) {
+    const navigate = useNavigate()
+
+    function goToPage(){
+        if (income){
+            navigate("/add-income")
+        } else{
+            navigate("/add-outflow")
+        }
+    }
     return(
         <>
-        <ButtonAddContainer>
-            <p>+</p>
-            <p>Nova entrada</p>
+        <ButtonAddContainer onClick={goToPage}>
+            {income ?
+            <AddCircleOutline
+            color={whiteColor} 
+            height="25px"
+            width="25px"
+            />
+            :
+            <RemoveCircleOutline
+            color={whiteColor} 
+            height="25px"
+            width="25px"
+            />}
+
+            {income ?
+            <Label>Nova entrada</Label>
+            :
+            <Label>Nova saída</Label>}
         </ButtonAddContainer>
         </>
     )
@@ -27,4 +53,8 @@ const ButtonAddContainer = styled.div`
     line-height: 20px;
     color: ${whiteColor};
     padding: 10px;
+`
+const Label = styled.div`
+    width: 64px;
+    margin-top: 25px;
 `

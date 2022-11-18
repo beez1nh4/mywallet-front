@@ -3,7 +3,6 @@ import { backgroundColor, whiteColor } from "../constants/colors";
 import { baseFont } from "../constants/fonts";
 
 export const Title = styled.div`
-    width: 100%;
     height: 31px;
     font-family: ${baseFont};
     font-style: normal;

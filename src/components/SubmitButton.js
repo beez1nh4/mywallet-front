@@ -15,10 +15,10 @@ export const SubmitButton = styled.button`
     line-height: 23px;
     text-align: center;
     color: ${whiteColor};
-    margin-bottom: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 13px;
     /* opacity: ${(props) => props.load ? "0.7" : "1"}; */
     :hover{
         cursor: pointer;

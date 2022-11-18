@@ -6,6 +6,7 @@ export const LinkToClick = styled.div`
     width: 227px;
     height: 18px;
     margin-bottom: 600px;
+    margin-top: 36px;
     & p {
         font-family: ${baseFont};
         font-style: normal;
