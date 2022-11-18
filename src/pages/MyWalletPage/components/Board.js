@@ -1,18 +1,22 @@
 import styled from "styled-components";
 import { grayColor, whiteColor } from "../../../constants/colors";
 import { baseFont } from "../../../constants/fonts";
+import BoardItem from "./BoardItem";
 
 export default function Board() {
     return(
         <>
         <BoardContainer>
             <EmptyBoard>Não há registros de entrada ou saída</EmptyBoard>
+            <BoardItem></BoardItem>
         </BoardContainer>
         </>
     )
 }
 
 const BoardContainer = styled.div`
+    box-sizing: border-box;
+    padding: 12px;
     width: 326px;
     height: 446px;
     background: ${whiteColor};
