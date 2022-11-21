@@ -11,6 +11,12 @@ export const Input = styled.input`
     margin-bottom: 13px;
     padding: 15px;
     border: none;
+    color: ${blackColor};
+    font-family: ${baseFont};
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
     
     ::placeholder{
         color: ${blackColor};

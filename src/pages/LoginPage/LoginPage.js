@@ -4,14 +4,49 @@ import { SubmitButton } from "../../components/SubmitButton";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../components/Logo";
 import { Background } from "../../components/Background";
-
+import { useState } from "react";
+import { URLlocalhost } from "../../constants/urls";
+import axios from "axios";
 
 export default function LoginPage() {
     const navigate = useNavigate()
+    const [form, setForm] = useState({ email: "", password: "" })
+    const [load, setLoad] = useState(false)
+    const {setToken, setName} = useAuth()
 
     function navigateSignUp(){
         navigate("/sign-up")
     }
+
+    function fillForm(e) {
+        if (!load){
+        const { name, value } = e.target
+        const formContent = { ...form, [name]: value }
+        setForm(formContent)
+        console.log(formContent)
+    }}
+
+    function login() {
+        const URL = URLlocalhost+"login"
+
+        const promise = axios.post(URL, form)
+
+        setLoad(true)
+
+        promise.then((res) => {
+          setToken(res.data.token)
+          console.log(res.data.token)
+          setLoad(false)
+          setName(res.data.name)
+          navigate("/my-wallet")
+        })
+    
+        promise.catch((err) => {
+          alert(err.response.data.message)
+          setLoad(false)
+        })
+    
+      }
 
     return(
         <>
@@ -19,11 +54,23 @@ export default function LoginPage() {
         <Logo/>
         <Input
         placeholder="E-mail"
+        name="email"
+        value={form.email}
+        onChange={fillForm}
+        type="text"
+        disabled= {load && true}
+        load={load}
         />
         <Input
         placeholder="Senha"
+        name="password"
+        value={form.password}
+        onChange={fillForm}
+        type="password"
+        disabled= {load && true}
+        load={load}
         />
-        <SubmitButton>Entrar</SubmitButton>
+        <SubmitButton onClick={login}>Entrar</SubmitButton>
         <LinkToClick onClick={navigateSignUp}>
             <p>Primeira vez? Cadastre-se!</p>
         </LinkToClick>
