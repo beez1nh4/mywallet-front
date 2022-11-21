@@ -26,7 +26,7 @@ export default function AddOutflowPage() {
         setForm({ ...form, [name]: value })
       }}
 
-    function addIncome() {
+    function addOutflow() {
         const URL = URLlocalhost+"my-wallet"
         //console.log(form)
         const body = {...form, date, income: false}
