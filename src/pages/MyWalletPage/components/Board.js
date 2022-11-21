@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { URLlocalhost } from "../../../constants/urls";
 import { useAuth } from "../../../providers/auth";
+import Balance from "./Balance";
 
 export default function Board() {
     const [load, setLoad] = useState(true)
@@ -21,7 +22,8 @@ export default function Board() {
         promise.catch((err) => {
             alert(err.response.data)
         })
-      },[transactions])
+      },[setTransactions, token])
+      
     return(
         <>
         <BoardContainer>
@@ -29,7 +31,10 @@ export default function Board() {
             <EmptyBoard>Não há registros de entrada ou saída</EmptyBoard> :
             transactions.map((transaction, i) => (
                     <BoardItem transaction={transaction} index={i} key={i}/>
-                ))}
+                ))
+            }
+            {transactions.length!==0 && <Balance/>}
+            
         </BoardContainer>
         </>
     )
@@ -47,6 +52,7 @@ const BoardContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: 13px;
+    overflow-y: scroll;
 `
 const EmptyBoard = styled.div`
     width: 180px;

@@ -7,11 +7,12 @@ export default function BoardItem({transaction, index}) {
     /* const date = dayjs().format('DD/MM')
     const description = 'Mercado'
     const value = '231,30' */
+    
     return(
         <>
             <BoardItemContainer>
                 <DateLabel>{date}</DateLabel>
-                <ActivityLabel>{description}</ActivityLabel>
+                <DescriptionLabel>{description}</DescriptionLabel>
                 <ValueLabel condition={isIncome}>{value}</ValueLabel>
             </BoardItemContainer>
         </>
@@ -31,13 +32,16 @@ const DateLabel = styled.div`
     line-height: 19px;
     color: ${lightGrayColor};
 `
-const ActivityLabel = styled.div`
+const DescriptionLabel = styled.div`
+    width: 175px;
     font-family: ${baseFont};
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
     color: ${blackColor};
+    text-align: left;
+    margin-left: 15px;
 `
 const ValueLabel = styled.div`
     font-family: ${baseFont};
@@ -45,5 +49,5 @@ const ValueLabel = styled.div`
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    color: ${(props) => props.condition ? incomeColor : outflowColor };;
+    color: ${(props) => props.condition ? incomeColor : outflowColor };
 `

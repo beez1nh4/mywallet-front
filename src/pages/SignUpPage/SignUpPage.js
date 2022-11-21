@@ -38,7 +38,7 @@ export default function SignUpPage() {
         })
     
         promise.catch((err) => {
-          alert(err.response.data.message)
+          alert(err.response.data)
           setLoad(false)
         })
       }

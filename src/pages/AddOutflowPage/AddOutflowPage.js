@@ -15,7 +15,7 @@ export default function AddOutflowPage() {
     const [form, setForm] = useState({ value: "" , description: ""})
     const [load, setLoad] = useState(false)
     const date = dayjs().format('DD/MM')
-    const {token, userLogged} = useAuth()
+    const {token, userLogged, balance, setBalance, setIsPositive} = useAuth()
 
     const navigate = useNavigate()
     function goToPage(){
@@ -30,6 +30,7 @@ export default function AddOutflowPage() {
 
     function addOutflow() {
         const URL = URLlocalhost+"transactions"
+        const {value} = form
         //console.log(form)
         const body = {...form, date, userLogged, isIncome: false}
         console.log(body)
@@ -43,11 +44,19 @@ export default function AddOutflowPage() {
         promise.then((res) => {
           //console.log(res.data.id)
           setLoad(false)
+          const newBalance = balance-Number(value)
+          setBalance(newBalance)
+          if (newBalance <=0){
+            setIsPositive(false)
+          }
+          if (newBalance >=0){
+            setIsPositive(true)
+          }
           navigate("/my-wallet")
         })
     
         promise.catch((err) => {
-          alert(err.response.data.message)
+          alert(err.response.data)
           setLoad(false)
         })
     
