@@ -8,7 +8,8 @@ import { useState } from "react";
 import { URLlocalhost } from "../../constants/urls";
 import axios from "axios";
 import { useAuth } from "../../providers/auth";
-
+import { whiteColor } from "../../constants/colors";
+import { ThreeDots } from "react-loader-spinner"
 
 export default function LoginPage() {
     const navigate = useNavigate()
@@ -72,7 +73,22 @@ export default function LoginPage() {
         disabled= {load && true}
         load={load}
         />
-        <SubmitButton onClick={login}>Entrar</SubmitButton>
+        <SubmitButton onClick={login}>
+        {load ?
+        <ThreeDots 
+        height="51" 
+        width="51" 
+        radius="9"
+        color={whiteColor} 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+         />
+        :
+        "Entrar"
+        }
+        </SubmitButton>
         <LinkToClick onClick={navigateSignUp}>
             <p>Primeira vez? Cadastre-se!</p>
         </LinkToClick>

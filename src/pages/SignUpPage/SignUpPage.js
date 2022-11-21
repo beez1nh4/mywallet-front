@@ -7,6 +7,8 @@ import { Background } from "../../components/Background";
 import { useState } from "react";
 import { URLlocalhost } from "../../constants/urls";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner"
+import { whiteColor } from "../../constants/colors";
 
 export default function SignUpPage() {
     const navigate = useNavigate()
@@ -82,7 +84,23 @@ export default function SignUpPage() {
         disabled= {load && true}
         load={load}
         />
-        <SubmitButton onClick={signUp}>Cadastrar</SubmitButton>
+        <SubmitButton onClick={signUp}>
+        {load ?
+        <ThreeDots 
+        height="51" 
+        width="51" 
+        radius="9"
+        color={whiteColor} 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+         />
+        :
+        "Cadastrar"
+        }
+          
+          </SubmitButton>
         <LinkToClick onClick={navigateLogin}>
             <p>Já tem uma conta? Entre agora!</p>
         </LinkToClick>

@@ -3,13 +3,14 @@ import { Background } from "../../components/Background";
 import { Input } from "../../components/Input";
 import { SubmitButton } from "../../components/SubmitButton";
 import { Title } from "../../components/Title";
-import { backgroundColor } from "../../constants/colors";
+import { backgroundColor, whiteColor } from "../../constants/colors";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
 import { useAuth } from "../../providers/auth";
 import { URLlocalhost } from "../../constants/urls";
 import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function AddIncomePage() {
     const [form, setForm] = useState({ value: "" , description: ""})
@@ -30,7 +31,7 @@ export default function AddIncomePage() {
 
     function addIncome() {
         const URL = URLlocalhost+"transactions"
-        const {value} = form
+        
         //console.log(form)
         const body = {...form, date, userLogged, isIncome: true}
         const config = {
@@ -75,7 +76,22 @@ export default function AddIncomePage() {
             disabled= {load && true}
             load={load}
             />
-            <SubmitButton onClick={addIncome}>Salvar entrada</SubmitButton>
+            <SubmitButton onClick={addIncome}>
+            {load ?
+            <ThreeDots 
+            height="51" 
+            width="51" 
+            radius="9"
+            color={whiteColor} 
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+            />
+            :
+            "Salvar entrada"
+            }
+            </SubmitButton>
             <SubmitButton onClick={goToPage}>Cancelar</SubmitButton>
             <Fill></Fill>
         </Background>

@@ -3,20 +3,18 @@ import { grayColor, whiteColor } from "../../../constants/colors";
 import { baseFont } from "../../../constants/fonts";
 import BoardItem from "./BoardItem";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { URLlocalhost } from "../../../constants/urls";
 import { useAuth } from "../../../providers/auth";
 import Balance from "./Balance";
 
 export default function Board() {
-    const [load, setLoad] = useState(true)
-    const {transactions, setTransactions, token, balance, setBalance, setIsPositive} = useAuth()
+    const {transactions, setTransactions, token, setBalance, setIsPositive} = useAuth()
 
     useEffect(() => {
         const promise = axios.get(URLlocalhost+'transactions', { headers: { Authorization: `Bearer ${token}` } })
         promise.then((res) => {
           setTransactions(res.data)
-          setLoad(false)
           let newBalance = 0
           setBalance(newBalance)
           for (let i = 0; i< res.data.length;i++){
