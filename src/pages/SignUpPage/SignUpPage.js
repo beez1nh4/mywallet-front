@@ -22,7 +22,7 @@ export default function SignUpPage() {
         const { name, value } = e.target
         const formContent = { ...form, [name]: value }
         setForm(formContent)
-        console.log(formContent)
+        //console.log(formContent)
     }}
     function signUp() {
         const URL = URLlocalhost+"sign-up"

@@ -25,7 +25,7 @@ export default function LoginPage() {
         const { name, value } = e.target
         const formContent = { ...form, [name]: value }
         setForm(formContent)
-        console.log(formContent)
+        //console.log(formContent)
     }}
 
     function login() {

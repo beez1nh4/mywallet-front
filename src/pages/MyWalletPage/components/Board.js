@@ -10,15 +10,30 @@ import Balance from "./Balance";
 
 export default function Board() {
     const [load, setLoad] = useState(true)
-    const {transactions, setTransactions, token} = useAuth()
+    const {transactions, setTransactions, token, balance, setBalance, setIsPositive} = useAuth()
+
     useEffect(() => {
         const promise = axios.get(URLlocalhost+'transactions', { headers: { Authorization: `Bearer ${token}` } })
-    
         promise.then((res) => {
           setTransactions(res.data)
           setLoad(false)
-        })
-    
+          let newBalance = 0
+          setBalance(newBalance)
+          for (let i = 0; i< res.data.length;i++){
+            if (res.data[i].isIncome){
+                newBalance = (newBalance+Number(res.data[i].value))
+            } else{
+                newBalance = (newBalance-Number(res.data[i].value))
+            }
+            }
+            setBalance(newBalance)
+            if (newBalance <0){
+                setIsPositive(false)
+            }
+            if (newBalance >=0){
+                setIsPositive(true)
+            }
+    })
         promise.catch((err) => {
             alert(err.response.data)
         })
