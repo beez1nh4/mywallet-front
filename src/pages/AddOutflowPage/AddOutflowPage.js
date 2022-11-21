@@ -43,6 +43,7 @@ export default function AddOutflowPage() {
         promise.then((res) => {
           //console.log(res.data.id)
           setLoad(false)
+          navigate("/my-wallet")
         })
     
         promise.catch((err) => {

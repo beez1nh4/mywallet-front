@@ -1,18 +1,18 @@
 import styled from 'styled-components'
-import dayjs from 'dayjs'
 import { baseFont } from '../../../constants/fonts'
 import { blackColor, incomeColor, lightGrayColor, outflowColor } from '../../../constants/colors'
 
-export default function BoardItem() {
-    const date = dayjs().format('DD/MM')
-    const activity = 'Mercado'
-    const value = '231,30'
+export default function BoardItem({transaction, index}) {
+    const {date, description, value, isIncome} = transaction
+    /* const date = dayjs().format('DD/MM')
+    const description = 'Mercado'
+    const value = '231,30' */
     return(
         <>
             <BoardItemContainer>
                 <DateLabel>{date}</DateLabel>
-                <ActivityLabel>{activity}</ActivityLabel>
-                <ValueLabel>{value}</ValueLabel>
+                <ActivityLabel>{description}</ActivityLabel>
+                <ValueLabel condition={isIncome}>{value}</ValueLabel>
             </BoardItemContainer>
         </>
     )
@@ -45,5 +45,5 @@ const ValueLabel = styled.div`
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    color: ${incomeColor};
+    color: ${(props) => props.condition ? incomeColor : outflowColor };;
 `

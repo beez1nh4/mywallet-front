@@ -42,6 +42,7 @@ export default function AddIncomePage() {
         promise.then((res) => {
           //console.log(res.data.id)
           setLoad(false)
+          navigate("/my-wallet")
         })
     
         promise.catch((err) => {
