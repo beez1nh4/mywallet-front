@@ -7,11 +7,14 @@ import { backgroundColor } from "../../constants/colors";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
+import { useAuth } from "../../providers/auth";
+import { URLlocalhost } from "../../constants/urls";
 
 export default function AddIncomePage() {
     const [form, setForm] = useState({ value: "" , description: ""})
     const [load, setLoad] = useState(false)
     const date = dayjs().format('DD/MM')
+    const {token} = useAuth()
 
     const navigate = useNavigate()
     function goToPage(){
@@ -25,7 +28,7 @@ export default function AddIncomePage() {
       }}
 
     function addIncome() {
-        const URL = "my-wallet"
+        const URL = URLlocalhost+"my-wallet"
         //console.log(form)
         const body = {...form, date, income: true}
         const config = {
@@ -63,13 +66,13 @@ export default function AddIncomePage() {
             <Input
             placeholder="Descrição"
             name="description"
-            value={form.name}
+            value={form.description}
             onChange={fillForm}
             type="text"
             disabled= {load && true}
             load={load}
             />
-            <SubmitButton>Salvar entrada</SubmitButton>
+            <SubmitButton onClick={addIncome}>Salvar entrada</SubmitButton>
             <SubmitButton onClick={goToPage}>Cancelar</SubmitButton>
             <Fill></Fill>
         </Background>
