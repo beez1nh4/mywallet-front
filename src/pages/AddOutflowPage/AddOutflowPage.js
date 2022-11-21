@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
 import { URLlocalhost } from "../../constants/urls";
+import { useState } from "react";
+import { useAuth } from "../../providers/auth";
 
 export default function AddOutflowPage() {
     const [form, setForm] = useState({ value: "" , description: ""})
     const [load, setLoad] = useState(false)
     const date = dayjs().format('DD/MM')
-    const {token} = useAuth()
+    const {token, userLogged} = useAuth()
 
     const navigate = useNavigate()
     function goToPage(){
@@ -27,9 +29,10 @@ export default function AddOutflowPage() {
       }}
 
     function addOutflow() {
-        const URL = URLlocalhost+"my-wallet"
+        const URL = URLlocalhost+"transactions"
         //console.log(form)
-        const body = {...form, date, income: false}
+        const body = {...form, date, userLogged, isIncome: false}
+        console.log(body)
         const config = {
             headers: {
                 "Authorization": `Bearer ${token}`

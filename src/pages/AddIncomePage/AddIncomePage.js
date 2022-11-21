@@ -9,12 +9,13 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { useAuth } from "../../providers/auth";
 import { URLlocalhost } from "../../constants/urls";
+import { useState } from "react";
 
 export default function AddIncomePage() {
     const [form, setForm] = useState({ value: "" , description: ""})
     const [load, setLoad] = useState(false)
     const date = dayjs().format('DD/MM')
-    const {token} = useAuth()
+    const {token, userLogged} = useAuth()
 
     const navigate = useNavigate()
     function goToPage(){
@@ -28,9 +29,9 @@ export default function AddIncomePage() {
       }}
 
     function addIncome() {
-        const URL = URLlocalhost+"my-wallet"
+        const URL = URLlocalhost+"transactions"
         //console.log(form)
-        const body = {...form, date, income: true}
+        const body = {...form, date, userLogged, isIncome: true}
         const config = {
             headers: {
                 "Authorization": `Bearer ${token}`

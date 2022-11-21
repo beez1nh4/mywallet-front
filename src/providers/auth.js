@@ -4,12 +4,12 @@ import { createContext } from 'react';
 export const AuthContext = createContext({});
 
 export const AuthProvider = (props) => {
-  const [name, setName] = useState("Fulano")
+  const [userLogged, setUserLogged] = useState("Fulano")
   const [token, setToken] = useState("")
   return (
     <AuthContext.Provider value={
-      {name,
-        setName,
+      { userLogged,
+        setUserLogged,
         token,
         setToken
       }}>

@@ -13,11 +13,11 @@ export default function MyWalletPage() {
     function goToPage(){
         navigate("/")
     }
-    const {name} = useAuth()
+    const {userLogged} = useAuth()
     return(
         <>
         <AlignTop>
-        <Title>Olá, {name}!</Title>
+        <Title>Olá, {userLogged}!</Title>
         <LogOutOutline
         color={whiteColor} 
         height="35px"

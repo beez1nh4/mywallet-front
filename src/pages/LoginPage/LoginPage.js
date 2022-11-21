@@ -7,12 +7,14 @@ import { Background } from "../../components/Background";
 import { useState } from "react";
 import { URLlocalhost } from "../../constants/urls";
 import axios from "axios";
+import { useAuth } from "../../providers/auth";
+
 
 export default function LoginPage() {
     const navigate = useNavigate()
     const [form, setForm] = useState({ email: "", password: "" })
     const [load, setLoad] = useState(false)
-    const {setToken, setName} = useAuth()
+    const {setToken, setUserLogged} = useAuth()
 
     function navigateSignUp(){
         navigate("/sign-up")
@@ -27,7 +29,7 @@ export default function LoginPage() {
     }}
 
     function login() {
-        const URL = URLlocalhost+"login"
+        const URL = URLlocalhost+"sign-in"
 
         const promise = axios.post(URL, form)
 
@@ -35,9 +37,9 @@ export default function LoginPage() {
 
         promise.then((res) => {
           setToken(res.data.token)
-          console.log(res.data.token)
+          console.log(res.data)
           setLoad(false)
-          setName(res.data.name)
+          setUserLogged(res.data.name)
           navigate("/my-wallet")
         })
     
